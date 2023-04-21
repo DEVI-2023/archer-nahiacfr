@@ -14,13 +14,27 @@ namespace Archer
         private int hitPoints;
 
         private Animator animator;
+        public Vector3 posicion;
+        public GameObject enemy;
 
         public event IScoreProvider.ScoreAddedHandler OnScoreAdded;
+        void Start()
+        {
 
-        private void Awake()
+            Vector3 posicionEnemigo = new Vector3(UnityEngine.Random.Range(-10, 8), posicion.y, UnityEngine.Random.Range(-10, 8));
+            enemy.GetComponent<Rigidbody>().position = posicionEnemigo;
+            Debug.Log(posicion);
+        }
+
+        void Awake()
         {
             animator = GetComponent<Animator>();
+
+            Vector3 posicionEnemigo = new Vector3(UnityEngine.Random.Range(-10, 8), posicion.y, UnityEngine.Random.Range(-10, 8));
+            enemy.GetComponent<Rigidbody>().position = posicionEnemigo;
+            Debug.Log(posicion);
         }
+
 
         // Método que se llamará cuando el enemigo reciba un impacto
         public void Hit()

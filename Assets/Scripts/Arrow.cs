@@ -8,9 +8,10 @@ namespace Archer
 
         private Rigidbody arrowRigidbody;
         private bool hit;
-
+        AudioSource m_MyAudioSource;
         private void Awake()
         {
+            m_MyAudioSource = GetComponent<AudioSource>();
             // Establecer las referencias de Rigidbody (para detener la flecha) y AudioSource (para el sonido de impacto)
             arrowRigidbody = GetComponent<Rigidbody>();
            
@@ -22,6 +23,7 @@ namespace Archer
             // La flecha sólo produce daño y ruido en el primer impacto
             if (hit) {
                 return;
+               m_MyAudioSource.Play();
             }
 
             // Si impacta con el jugador, lo ignoramos
@@ -31,19 +33,19 @@ namespace Archer
             }
 
             hit = true;
-
+            
             // Reproducir el impacto de la flecha
-  
+
 
             // Hacemos que la flecha sea hija del objeto contra el que impacta, para que se mueva con el
-           
+
             // Hacemos que la flecha sea kinematica para que no responda a nuevas aceleraciones (se quede clavada)
-           
+
 
             // Miramos a ver si el objeto contra el que ha impacto la flecha tiene un componente Enemy...
-           
+
             // ... Y si lo tiene, le hacemos daño (la siguiente comprohación es equivalente a hacer if (enemy != null) { enemy.Hit(); }
-          
+
         }
 
     }
